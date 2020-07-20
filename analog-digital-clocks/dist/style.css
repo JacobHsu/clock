@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #181719;
+}
+
+.clock {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20em;
+  height: 20em;
+  font-size: 10px;
+  color: #fff;
+  border: 1em solid;
+  border-radius: 20em;
+}
+.clock::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 1em;
+  height: 1em;
+  content: '';
+  z-index: 10;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  border-radius: 1em;
+}
+.clock .arrow {
+  --rotate: 0deg;
+  position: absolute;
+  transform-origin: bottom center;
+  transform: translateY(-50%) rotateZ(var(--rotate));
+  border-radius: 2em 2em  0  0;
+}
+.clock .arrow.hour {
+  width: 0.55em;
+  height: 5em;
+  background-color: #fff;
+}
+.clock .arrow.minute {
+  width: 0.375em;
+  height: 6.25em;
+  background-color: #fff;
+}
+.clock .arrow.second {
+  width: 0.25em;
+  height: 16em;
+  background-color: #00a7fb;
+}
+.clock .digital {
+  position: absolute;
+  bottom: -2em;
+  font-family: 'Bungee Inline', cursive;
+  font-size: 4em;
+}
+.clock .tick {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  transform-origin: center center;
+  height: 100%;
+  background-color: transparent;
+  transform: rotateZ(var(--rotate));
+}
+.clock .tick::before, .clock .tick::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  background-color: #fff;
+  height: var(--tick-size);
+}
+.clock .tick::before {
+  top: 0;
+  border-radius: 0 0 1em 1em;
+}
+.clock .tick::after {
+  bottom: 0;
+  border-radius: 1em 1em 0 0;
+}
+.clock .tick.big {
+  width: 4px;
+  --tick-size: 11px;
+}
+.clock .tick.small {
+  width: 2px;
+  --tick-size: 11px;
+}

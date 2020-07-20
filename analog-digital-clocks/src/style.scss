@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #181719;
+}
+
+.clock {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40em;
+  height: 40em;
+  font-size: 10px;
+  color: #fff;
+  border: 1em solid  ;
+  border-radius: 20em;
+  
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 2em;
+    height: 2em;
+    content: '';
+    z-index: 10;
+    background-color: #003ef5;
+    transform: translate(-50%, -50%);
+    border-radius: 1em;
+  }
+  
+  .arrow {    
+    --rotate: 0deg;
+    position: absolute;
+    transform-origin: bottom center;
+    transform: translateY(-50%) rotateZ(var(--rotate));
+    border-radius: 2em 2em  0  0;
+    
+  
+    &.hour {
+      width: 1.1em;
+      height: 10em;
+      background-color: #fff;
+    }
+
+    &.minute {
+      width: 0.75em;
+      height: 12.5em;
+      background-color: #fff;
+    }
+
+    &.second {
+      width: 0.25em;
+      height: 16em;
+      background-color: #00a7fb;
+    }
+  }
+  
+  .digital {
+    position: absolute;
+    bottom: -2em;
+    font-family: 'Bungee Inline', cursive;
+    font-size: 4em;
+  }
+  
+  .tick {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    transform-origin: center center;
+    height: 100%;
+    background-color: transparent;
+    transform: rotateZ(var(--rotate));
+    
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      background-color: #fff;
+      height: var(--tick-size);
+    }
+    
+    &::before {
+      top: 0;
+      border-radius: 0 0 1em 1em ;
+    }
+    
+    &::after {
+      bottom: 0;
+      border-radius: 1em 1em 0 0 ;
+    }
+    
+    &.big {
+      width: 8px;
+      --tick-size: 36px;
+    }  
+    &.small {
+      width: 4px;
+      --tick-size: 22px;
+    }  
+    &.tiny {
+      width: 2px;
+      --tick-size: 8px;
+    }
+  }
+}
+
